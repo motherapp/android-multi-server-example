@@ -11,10 +11,27 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            applicationIdSuffix ".debug"
+            versionNameSuffix "-debug"
+            debuggable true
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    flavorDimensions "server"
+    productFlavors {
+        uat {
+            dimension "server"
+            buildConfigField "String", "SERVER_URL", '"http://uat-server/"'
+        }
+        production {
+            dimension "server"
+            buildConfigField "String", "SERVER_URL", '"http://production-server/"'
+        }
+
     }
 }
 
